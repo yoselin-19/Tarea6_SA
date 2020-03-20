@@ -3,7 +3,6 @@ version: "3.7"
 services:
     php:
         build:
-            dockerimage: Dockerfile
             context: .
         container_name: php
         volumes:
@@ -12,6 +11,8 @@ services:
               target: /var/www/html        
         ports:
             - 80:80
+        links:
+            - servidor_bd
               
     servidor_bd:
         container_name: servidor_bd
@@ -21,7 +22,6 @@ services:
             - MYSQL_DATABASE=sakila
             - MYSQL_USER=root
             - MYSQL_PASSWORD=123
-        volumes:
-            - type: bind
-              source: ./sakila-db/sakila-schema.sql
-              target: /var/lib/mysql
+        ports:
+            - 3306:3306
+        restart: always
