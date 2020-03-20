@@ -1,9 +1,14 @@
 <?php
-    $host = 'localhost';
-    $user = 'root';
-    $pass = '123';
+    $host = 'servidor_bd';
+    $user = 'devuser';
+    $pass = 'devpass';
     $bd_ = 'sakila';
     $conexion = mysqli_connect($host, $user, $pass, $bd_);
+    
+    if($conexion->connect_error){
+        echo 'connection failed'. $conexion->connect_error;
+    }
+    echo 'Sucessfully connected to mysql';
 ?>
 
 <!DOCTYPE html>
