@@ -2,7 +2,7 @@
     $host = 'servidor_bd';
     $user = 'devuser';
     $pass = 'devpass';
-    $bd_ = 'sakila';
+    $bd_ = 'Tarea';
     $conexion = mysqli_connect($host, $user, $pass, $bd_);
     
     if($conexion->connect_error){
@@ -19,18 +19,16 @@
 		<title>Mostrar datos</title>
 	</head>
 	<body>
-        <h1>Consulta actor</h1>
+        <h1>Consulta estudiante</h1>
         <table border="1" >
           
             <tr>
-                <td>actor_id</td>
-                <td>first_name</td>
-                <td>last_name</td>
-                <td>last_update</td>
+                <td>pais</td>
+                <td>nombre</td>
             </tr>
           
             <?php
-                $sql = "SELECT * FROM actor limit=25";
+                $sql = "SELECT * FROM actor;";
                 $result = mysqli_query($conexion, $sql);
                 
                 while($mostrar=mysqli_fetch_array($result)){
@@ -38,10 +36,8 @@
             ?>
           
             <tr>
-                <td><?php echo $mostrar['actor_id'] ?></td>
-                <td><?php echo $mostrar['first_name'] ?></td>
-                <td><?php echo $mostrar['last_name'] ?></td>
-                <td><?php echo $mostrar['last_update'] ?></td>
+                <td><?php echo $mostrar['pais'] ?></td>
+                <td><?php echo $mostrar['nombre'] ?></td>
             </tr>
             <?php
                 }
