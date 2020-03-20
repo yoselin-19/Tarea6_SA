@@ -2,8 +2,8 @@
     $host = 'localhost';
     $user = 'root';
     $pass = '123';
-    $table = 'pruebas';
-    $conexion = mysqli_connect($host, $user, $pass, $table);
+    $bd_ = 'sakila';
+    $conexion = mysqli_connect($host, $user, $pass, $bd_);
 ?>
 
 <!DOCTYPE html>

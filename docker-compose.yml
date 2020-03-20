@@ -1,33 +1,27 @@
 version: "3.7"
 
 services:
-    servidor_web:
-        container_name: servidor_web
-        image: httpd
-        depends_on:
-            - php
-            - servidor_bd
-        ports:
-            - 80:80
+    php:
+        build:
+            dockerimage: Dockerfile
+            context: .
+        container_name: php
         volumes:
             - type: bind
               source: ./Html
-              target: /usr/local/apache2/htdocs
+              target: /var/www/html        
+        ports:
+            - 80:80
               
     servidor_bd:
         container_name: servidor_bd
         image: mysql
         environment:
             - MYSQL_ROOT_PASSWORD=123
+            - MYSQL_DATABASE=sakila
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=123
         volumes:
             - type: bind
-              source: ./sakila-db
-              target: /home
-              
-    php:
-        container_name: php
-        image: php
-        volumes:
-            - type: bind
-              source: ./Html
-              target: /var/www/html
+              source: ./sakila-db/sakila-schema.sql
+              target: /var/lib/mysql
