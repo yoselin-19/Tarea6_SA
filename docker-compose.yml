@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+    servidor_web:
+        container_name: servidor_web
+        image: httpd
+        depends_on:
+            - php
+            - servidor_bd
+        ports:
+            - 80:80
+        volumes:
+            - type: bind
+              source: ./Html
+              target: /usr/local/apache2/htdocs
+              
+    servidor_bd:
+        container_name: servidor_bd
+        image: mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=123
+        volumes:
+            - type: bind
+              source: ./sakila-db
+              target: /home
+              
+    php:
+        container_name: php
+        image: php
+        volumes:
+            - type: bind
+              source: ./Html
+              target: /var/www/html
